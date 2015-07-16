@@ -1,6 +1,5 @@
-package com.lanfea.dataStructure.Tree;
+package com.lanfea.dataStructure.tree;
 
-import java.sql.SQLSyntaxErrorException;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 

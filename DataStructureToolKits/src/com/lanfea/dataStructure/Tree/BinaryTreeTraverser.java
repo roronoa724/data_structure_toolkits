@@ -1,4 +1,4 @@
-package com.lanfea.dataStructure.Tree;
+package com.lanfea.dataStructure.tree;
 
 import java.util.Stack;
 
