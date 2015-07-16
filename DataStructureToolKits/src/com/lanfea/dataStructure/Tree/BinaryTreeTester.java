@@ -1,5 +1,10 @@
 package com.lanfea.dataStructure.Tree;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * Created by lanfea on 2015/7/14.
  */
@@ -14,11 +19,8 @@ public class BinaryTreeTester implements BinaryTreeTraverser.Callback{
     public static void main(String[] args) {
         BinaryTreeTester tester = new BinaryTreeTester();
         BinaryTreeNode<Integer> root = BinaryTreeCreater.getInstance().constructBinaryTree(array);
-        BinaryTreeTraverser.getInstance().nonRecursivePreOrderTraverse(root,tester);
-        System.out.println();
-        BinaryTreeTraverser.getInstance().nonRecursiveInOrderTraverse(root, tester);
-        System.out.println();
-        BinaryTreeTraverser.getInstance().nonRecursivePostOrderTraverse(root, tester);
-        System.out.println();
+        CopyOnWriteArrayList<String> resultList = new CopyOnWriteArrayList<String>();
+        resultList = (CopyOnWriteArrayList<String>) BinaryTreeUtils.findPath(root, 21);
+        System.out.print(resultList);
     }
 }
