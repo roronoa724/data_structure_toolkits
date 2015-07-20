@@ -16,10 +16,15 @@ public class SortTester {
         Sorter<Integer> sorter1 = new InsertSorter<Integer>();
         Sorter<Integer> sorter2 = new BubbleSorter<Integer>();
         Sorter<Integer> sorter3 = new QuickSorter<Integer>();
-        Integer[] a = Generated.array(Integer.class, new RandomGenerator.Integer(), 10);
-        sorter3.sort(a);
+        Sorter<Integer> sorter4 = new HeapSorter<Integer>(false);
+        Integer[] a = Generated.array(Integer.class, new RandomGenerator.Integer(), 8);
         for (Integer i : a) {
             System.out.print(i + " ");
         }
+        System.out.println();
+        sorter4.sort(a);
+//        for (Integer i : a) {
+//            System.out.print(i + " ");
+//        }
     }
 }
