@@ -14,7 +14,12 @@ public class LinkedListTester implements LinkedListTraverser.Callback{
         LinkedListTester tester = new LinkedListTester();
         Integer[] array = new Integer[]{1,2,3,4,5,6,7,8,9,10};
         LinkedListNode<Integer> head = LinkedListCreater.getInstance().constructLinkedList(array);
-//        LinkedListTraverser.getInstance().normalForwardTraverse(head,tester);
-        LinkedListUtils.printLinkedListReversingly(head);
+        LinkedListTraverser.getInstance().normalForwardTraverse(head,tester);
+        System.out.println();
+//        LinkedListUtils.printLinkedListReversingly(head);
+        LinkedListNode<Integer> node = LinkedListUtils.findKthToTail(head, 8);
+        if (node != null) {
+            System.out.println(node.data);
+        }
     }
 }

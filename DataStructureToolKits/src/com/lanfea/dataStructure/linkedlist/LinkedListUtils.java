@@ -32,5 +32,34 @@ public class LinkedListUtils {
     /*------------------------------EndOfQuestion1------------------------------*/
 
     /*------------------------------Question2------------------------------*/
+
+    /**
+     * 查找单向链表中的倒数第K个节点
+     * @param head
+     * @param <T>
+     * @return
+     */
+    public static <T> LinkedListNode<T> findKthToTail(LinkedListNode<T> head, int k) {
+        // 倒数第0个或者负数个节点没有意义
+        if (head == null || k <= 0)
+            return null;
+        //先行节点
+        LinkedListNode<T> aheadNode = head;
+        //后行节点
+        LinkedListNode<T> behindNode = null;
+        for (int i = 0; i < k - 1; ++i) {
+            if (aheadNode.next != null)
+                aheadNode = aheadNode.next;
+            // 还没有遍历到第k-1个就越界了，说明k要比链表的长度还要大，显然是非法的
+            else
+                return null;
+        }
+        behindNode = head;
+        while(aheadNode.next != null) {
+            aheadNode = aheadNode.next;
+            behindNode = behindNode.next;
+        }
+        return behindNode;
+    }
     /*------------------------------EndOfQuestion2------------------------------*/
 }
