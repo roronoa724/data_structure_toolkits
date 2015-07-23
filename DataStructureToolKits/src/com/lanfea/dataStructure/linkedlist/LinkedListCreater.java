@@ -24,22 +24,17 @@ public class LinkedListCreater {
      * @return
      */
     public <T> LinkedListNode<T> constructLinkedList(T[] array) {
-        if (array == null)
+        // 数组为null或者数组长度为0，返回null
+        if (array == null || array.length == 0)
             return null;
         LinkedListNode<T> head = null;
-        // 如果数组为空，返回一个空的头节点
-        if (array.length == 0) {
-            head = new LinkedListNode<T>();
-        }
         // 如果数组的长度大于1，那么顺次遍历数组并建立链表
-        else {
-            head = new LinkedListNode<T>(array[0]);
-            LinkedListNode<T> runner = head;
-            for (int i = 1; i < array.length; ++i) {
-                LinkedListNode<T> node = new LinkedListNode<T>(array[i]);
-                runner.next = node;
-                runner = runner.next;
-            }
+        head = new LinkedListNode<T>(array[0]);
+        LinkedListNode<T> runner = head;
+        for (int i = 1; i < array.length; ++i) {
+            LinkedListNode<T> node = new LinkedListNode<T>(array[i]);
+            runner.next = node;
+            runner = runner.next;
         }
         return head;
     }
