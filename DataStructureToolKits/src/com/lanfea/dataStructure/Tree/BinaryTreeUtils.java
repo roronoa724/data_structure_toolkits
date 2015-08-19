@@ -1,4 +1,4 @@
-package com.lanfea.dataStructure.tree;
+package com.lanfea.dataStructure.Tree;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -101,5 +101,79 @@ public class BinaryTreeUtils {
     }
     /*------------------------------EndOfQuestion2------------------------------*/
 
+    /*------------------------------Question3------------------------------*/
+
+    /**
+     * 通过前序遍历和中序遍历序列构建二叉树
+     * @param preOrder
+     * @param inOrder
+     * @param <T>
+     * @return
+     */
+    public static <T extends Comparable<? super T>> BinaryTreeNode<T> constructTree(
+            T[] preOrder, T[] inOrder) {
+        if (preOrder == null || inOrder == null || preOrder.length != inOrder.length) {
+            throw new IllegalArgumentException("Invalid arguments!");
+        }
+        // 获取遍历数组的长度
+        int length = preOrder.length;
+        // 调用主构建函数
+        return constructTreeCore(preOrder, 0, length - 1, inOrder, 0, length - 1);
+    }
+
+    /**
+     * 通过前序遍历和中序遍历序列构建二叉树核心递归函数
+     * @param preOrder 前序遍历序列
+     * @param preStart 前序开始索引
+     * @param preEnd 前序结束索引
+     * @param inOrder 中序遍历序列
+     * @param inStart 中序开始索引
+     * @param inEnd 中序结束索引
+     * @param <T>
+     * @return
+     */
+    private static <T extends Comparable<? super T>> BinaryTreeNode<T> constructTreeCore(
+            T[] preOrder, int preStart, int preEnd,
+            T[] inOrder, int inStart, int inEnd) {
+        // 创建当前遍历的根节点
+        BinaryTreeNode<T> root = new BinaryTreeNode<T>(preOrder[preStart]);
+        root.leftChild = root.rightChild = null;
+
+        // 递归终止基准条件，前序和中序都指向同一个节点两个节点值相同
+        if (preStart == preEnd) {
+            if (inStart == inEnd && preOrder[preStart].compareTo(inOrder[inStart]) == 0) {
+                return root;
+            } else {
+                throw new IllegalArgumentException("Invalid Input");
+            }
+        }
+
+        // 在中序遍历中查找当前根节点
+        int rootInOrder = inStart;
+        for (; rootInOrder <= inEnd && inOrder[rootInOrder].compareTo(root.value) != 0; ++rootInOrder);
+        // 如果搜索到最后也没有找到，那么说明输入参数有问题
+        if (rootInOrder == inEnd && inOrder[rootInOrder].compareTo(root.value) != 0)
+            throw new IllegalArgumentException("Invalid Input");
+
+        // 构建二叉树
+        int leftLength = rootInOrder - inStart;
+        int leftPreOrderEnd = preStart + leftLength;
+        // 如果存在左子树
+        if (leftLength > 0) {
+            // 构建左子树
+            root.leftChild = constructTreeCore(preOrder, preStart + 1, leftPreOrderEnd,
+                    inOrder, inStart, rootInOrder - 1);
+        }
+        // 如果存在右子树
+        if (leftLength < preEnd - preStart) {
+            // 构建右子树
+            root.rightChild = constructTreeCore(preOrder, leftPreOrderEnd + 1, preEnd,
+                    inOrder, rootInOrder + 1, inEnd);
+        }
+
+        return root;
+    }
+
+    /*------------------------------EndOfQuestion3------------------------------*/
 
 }

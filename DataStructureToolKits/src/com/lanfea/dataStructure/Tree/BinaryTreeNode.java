@@ -1,4 +1,4 @@
-package com.lanfea.dataStructure.tree;
+package com.lanfea.dataStructure.Tree;
 
 /**
  * Created by lanfea on 2015/7/14.

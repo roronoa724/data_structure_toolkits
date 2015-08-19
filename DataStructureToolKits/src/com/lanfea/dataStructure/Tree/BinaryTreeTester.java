@@ -1,6 +1,4 @@
-package com.lanfea.dataStructure.tree;
-
-import java.util.concurrent.CopyOnWriteArrayList;
+package com.lanfea.dataStructure.Tree;
 
 /**
  * Created by lanfea on 2015/7/14.
@@ -12,12 +10,10 @@ public class BinaryTreeTester implements BinaryTreeTraverser.Callback{
         System.out.print(node.value + " ");
     }
 
-    static final Integer[] array = {10,6,14,4,8,12,16,1,5};
+    static final Integer[] preOrder = {1,2,4,7,3,5,6,8};
+    static final Integer[] inOrder = {4,7,2,1,5,3,8,6};
     public static void main(String[] args) {
-        BinaryTreeTester tester = new BinaryTreeTester();
-        BinaryTreeNode<Integer> root = BinaryTreeCreater.getInstance().constructBinaryTree(array);
-        CopyOnWriteArrayList<String> resultList = new CopyOnWriteArrayList<String>();
-        resultList = (CopyOnWriteArrayList<String>) BinaryTreeUtils.findPath(root, 21);
-        System.out.print(resultList);
+        BinaryTreeNode<Integer> root = BinaryTreeUtils.constructTree(preOrder,inOrder);
+        BinaryTreeTraverser.getInstance().inOrderTraverse(root,new BinaryTreeTester());
     }
 }
