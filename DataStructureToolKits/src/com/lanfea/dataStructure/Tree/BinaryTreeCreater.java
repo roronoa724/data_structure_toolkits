@@ -1,4 +1,4 @@
-package com.lanfea.dataStructure.tree;
+package com.lanfea.dataStructure.Tree;
 
 import java.util.ArrayList;
 
